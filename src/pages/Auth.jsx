@@ -4,6 +4,7 @@ import { MdFingerprint } from "react-icons/md";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../Firebase";
 
@@ -40,8 +41,8 @@ function Auth() {
           const errorMessage = error.message;
           console.log(errorCode);
           console.log(errorMessage);
-          // ..
         });
+      await updateProfile(auth.currentUser, { displayName: username });
       alert("회원가입 성공!");
       setNewAccount(false);
     } else {
@@ -84,14 +85,14 @@ function Auth() {
             <LoginInput
               type="text"
               name="username"
-              placeholder="이름"
+              placeholder="이름을 입력해주세요"
               value={username}
               onChange={onChange}
             />
             <LoginInput
               type="password"
               name="pwd"
-              placeholder="비밀번호"
+              placeholder="비밀번호를 입력해주세요"
               value={password}
               onChange={onChange}
             />
@@ -110,14 +111,14 @@ function Auth() {
             <LoginInput
               type="text"
               name="email"
-              placeholder="이메일"
+              placeholder="이메일을 입력해주세요"
               value={email}
               onChange={onChange}
             />
             <LoginInput
               type="password"
               name="pwd"
-              placeholder="비밀번호"
+              placeholder="비밀번호를 입력해주세요"
               value={password}
               onChange={onChange}
             />
